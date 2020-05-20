@@ -182,6 +182,7 @@ public class Main{
                 break;
             }
         } while (opcao != 0);
+        ler.close();
     }
 
     public static void main(String[] args) {
