@@ -1,64 +1,31 @@
+
 import java.util.Scanner;
 public class Main{
 
-    public static boolean ehInteiro(String s) {
-        // cria um array de char
-        char[] c = s.toCharArray();
-        boolean d = true;
-
-        for (int i = 0; i < c.length; i++) {
-            // verifica se o char não é um dígito
-            if (!Character.isDigit(c[i])) {
-                d = false;
-                break;
-            }
-        }
-
-        return d;
-    }
 
     private static void menu() {
         Scanner ler = new Scanner(System.in);
         int opcao = 0;
-        Disciplina discip_SCC;
+        Disciplina discip_SCC = null;
 
         // Criando disciplina
         System.out.println("\n\n### Programa Nota Final ###");
         System.out.println("Crie uma disciplina para acessar o Sistema\n");
         System.out.println("Digite o codigo da disciplina");
         String codigo = ler.next();
-        ler.nextLine();
+        ler.nextLine(); 
 
-        int a = 0;
-
-        while (a != 1) {
-            if (codigo.length() != 7) {
-                System.out.println("Tamanho inválido, 7 caracteres (SSC####)");
-                System.out.println("Digite o código da disciplina");
+        int a = 1;
+        while(a == 1){
+            try{
+                discip_SCC = new Disciplina(codigo);
+                a = 0;
+            }catch(IllegalArgumentException e){
+                System.out.println("Codigo invalido, digite novamente");
                 codigo = ler.next();
                 ler.nextLine();
-            } else {
-                String cod1 = codigo.substring(0, 3);
-                String cod2 = "SSC";
-                if (!cod1.equals(cod2)) {
-                    System.out.println("A disciplina deve começar com SSC");
-                    System.out.println("Digite o código da disciplina");
-                    codigo = ler.next();
-                    ler.nextLine();
-                } else {
-                    if (ehInteiro(codigo.substring(3, 7))) {
-                        a = 1;
-                    } else{
-                        System.out.println("A disciplina deve terminar com digitos");
-                        System.out.println("Digite o código da disciplina");
-                        codigo = ler.next();
-                        ler.nextLine();
-                    }
-                }
             }
         }
-
-        discip_SCC = new Disciplina(codigo);
         
         //Iteracao do Menu
         do {
@@ -88,35 +55,43 @@ public class Main{
             case 1:
                 System.out.println("Digite as seguintes informações do aluno");
                 System.out.println("Nusp");
-                int nusp = ler.nextInt();
-                a = 0;
-                while(a != 1){
-                    String nusp_teste = Integer.toString(nusp);
-                    if(nusp_teste.length() > 7){
-                        System.out.println("Tamanho inválido, nusp deve ter no maximo 7 digitos");
-                        System.out.println("Digite o nusp novamente");
-                        nusp = ler.nextInt();
-                    }else{
-                        if(ehInteiro(nusp_teste)){
-                            a = 1;
-                        //Nunca falha, pq se falhar o nextInt() ja cancela o programa
-                        }else{
-                            System.out.println("Numero USP é composto somente por numeros");
-                            System.out.println("Digite o nusp novamente");
-                            nusp = ler.nextInt();
-                        }
-                    }
-                }
-
-                System.out.println("notaP1");
-                float p1 = ler.nextFloat();
-                System.out.println("notaP2");
-                float p2 = ler.nextFloat();
-                System.out.println("notaP3");
-                float p3 = ler.nextFloat();
+                String nusp = ler.next();
                 ler.nextLine();
 
-                Estudante estudante = new Estudante(nusp, p1, p2, p3);
+                System.out.println("notaP1 - decimal com .");
+                String p1 = ler.next();
+                ler.nextLine();
+                System.out.println("notaP2 - decimal com .");
+                String p2 = ler.next();
+                ler.nextLine();
+                System.out.println("notaP3 - decimal com .");
+                String p3 = ler.next();
+                ler.nextLine();
+
+                Estudante estudante = null;
+
+                a = 1;
+                while(a == 1){
+                    try{
+                        estudante = new Estudante(nusp, p1, p2, p3);
+                        a = 0;
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Dados invalidos, digite novamente");
+                        System.out.println("Nusp");
+                        nusp = ler.next();
+                        ler.nextLine();
+
+                        System.out.println("notaP1");
+                        p1 = ler.next();
+                        ler.nextLine();
+                        System.out.println("notaP2");
+                        p2 = ler.next();
+                        ler.nextLine();
+                        System.out.println("notaP3");
+                        p3 = ler.next();
+                        ler.nextLine();
+                    }
+                }
 
                 discip_SCC.matriculaEstudante(estudante);
                 break;
@@ -149,7 +124,10 @@ public class Main{
                 int nuspAux = ler.nextInt();
                 ler.nextLine();
 
-                discip_SCC.informacoesAluno(nuspAux);
+                String s = discip_SCC.informacoesAluno(nuspAux);
+                if (!s.equals("Válido")){
+                    System.out.println("Aluno não existente");
+                }
                 break;
 
             //Ordena pelo No.Usp
