@@ -23,7 +23,7 @@ public class Estudante implements Comparable<Estudante> {
 
         return d;
     }
-
+    // Construtor 
     public Estudante(String nusp2, String P1, String P2, String P3) throws IllegalArgumentException{
 
 
