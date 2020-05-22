@@ -21,7 +21,7 @@ java Main
 ```
 
 Interface do programa Nota Final:
- ==========================================================
+/==========================================================\
 |     1 -  Matricular Aluno                                |
 |     2 -  Consultar quantidade de Alunos                  |
 |     3 -  Consultar quantidade de Alunos APROVADOS        |
@@ -31,6 +31,6 @@ Interface do programa Nota Final:
 |     7 -  Imprimir lista ordenada pela média final        |
 |     8 -  Imprimir lista de aprovados                     |
 |     9 -  Imprimir lista de reprovados                    |
- ==========================================================
+\==========================================================/
 
 
