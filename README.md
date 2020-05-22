@@ -21,16 +21,27 @@ java Main
 ```
 
 Interface do programa Nota Final:
+
 /==========================================================\
+
 |     1 -  Matricular Aluno                                |
+
 |     2 -  Consultar quantidade de Alunos                  |
+
 |     3 -  Consultar quantidade de Alunos APROVADOS        |
+
 |     4 -  Consultar quantidade de Alunos REPROVADOS       |
+
 |     5 -  Consultar Informações de um Aluno               |
+
 |     6 -  Imprimir lista ordenada pelo Nusp               |
+
 |     7 -  Imprimir lista ordenada pela média final        |
+
 |     8 -  Imprimir lista de aprovados                     |
+
 |     9 -  Imprimir lista de reprovados                    |
+
 \==========================================================/
 
 
